@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+$Author: kdurne3@NA $
+$Date: 2019-07-18 14:41:21 -0400 (Thu, 18 Jul 2019) $
+$Id: ValidatePCBOMItems_log4j2.xml 2874 2019-07-18 18:41:21Z kdurne3@NA $
+$Revision: 2874 $
+$HeadURL: http://fcsource01.na.gilead.com:8080/svn/R_D/GPLM/branches/Sustainment/ValidatePCBOMItems/ValidatePCBOMItems_log4j2.xml $
+-->
+<Configuration monitorInterval="30">
+  <Properties>
+     <Property name="filename">ValidatePCBOMItems</Property>
+     <Property name="classname">com.gilead.agile.px.validatepcbomitems</Property>
+  </Properties>
+  <Appenders>
+    <RollingFile name="RollingFile">
+      <FileName>${sys:px.dir}/pxlogs/${filename}.log</FileName>
+      <FilePattern>${sys:px.dir}/pxlogs/${filename}-%d-%i.log</FilePattern>
+      <PatternLayout>
+        <Pattern>%d{MMM dd, yyyy hh:mm:ss a z}, [%5p](%F:%M():%L) - %m%n"</Pattern>
+      </PatternLayout>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="5 MB"/>
+      </Policies>
+    </RollingFile>
+  </Appenders>
+  <Loggers>
+    <Logger name="${classname}" level="debug" additivity="false">
+      <AppenderRef ref="RollingFile" />
+    </Logger>
+    <Root level="error">
+    </Root>
+  </Loggers>
+</Configuration>
